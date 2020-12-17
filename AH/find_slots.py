@@ -24,7 +24,6 @@ def find_slots(zipcode: str):
                 if slot['state'] != "full":
                     r += 1
             total_slots += r
-            # print(day["date"] + ": " + str(r) + " slots")
 
     if total_slots > 0:
         notify = Notify()
@@ -33,7 +32,7 @@ def find_slots(zipcode: str):
         else:
             print(notify.register())
             notify.write_config()
-        print("[" + str(datetime.now().strftime("%Y-%m-%d %H:%M:%s")) + "] Notifying about " + str(total_slots) + " available slots")
+        print("[" + str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + "] Notifying about " + str(total_slots) + " available slots")
         notify.send("AH Bezorg slots beschikbaar", "https://www.ah.nl")
 
 
