@@ -15,7 +15,7 @@ def find_slots(zipcode: str):
     cur_week = datetime.now().isocalendar()[1]
 
     data = data.get("_embedded").get("lanes")[3].get("_embedded").get("items")[0].get("_embedded")
-    total_slots = 1
+    total_slots = 0
     for day in data.get("deliveryDates"):
         date = datetime.strptime(day['date'], "%Y-%m-%d")
         if date.isocalendar()[1] == cur_week:
@@ -33,6 +33,7 @@ def find_slots(zipcode: str):
         else:
             print(notify.register())
             notify.write_config()
+        print("[" + str(datetime.now().strftime("%Y-%m-%d %H:%M:%s")) + "] Notifying about " + str(total_slots) + " available slots")
         notify.send("AH Bezorg slots beschikbaar", "https://www.ah.nl")
 
 
