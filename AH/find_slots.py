@@ -2,6 +2,7 @@ from datetime import datetime
 from notify_run import Notify
 
 import requests
+import sys
 
 
 BASE_URL = "https://www.ah.nl/service/rest/delegate?url=%2Fkies-moment%2Fbezorgen%2F$"
@@ -36,4 +37,9 @@ def find_slots(zipcode: str):
 
 
 if __name__ == '__main__':
-    find_slots("7513DB")
+    if len(sys.argv) == 2 and sys.argv[1] == "info":
+        notify = Notify()
+        notify.read_config()
+        print(notify.info())
+    else:
+        find_slots("7513DB")
